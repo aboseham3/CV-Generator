@@ -1,18 +1,33 @@
+// جلب القيمة
+function val(id){
+  return document.getElementById(id).value;
+}
+
+// تحويل النص إلى نقاط
+function list(id){
+  return document.getElementById(id).value
+    .split("\n")
+    .filter(item => item.trim() !== "")
+    .map(item => `<p>• ${item}</p>`)
+    .join("");
+}
+
+// إنشاء CV
 function generateCV(){
 
 const data = {
-name: val("name"),
-title: val("title"),
-phone: val("phone"),
-email: val("email"),
-city: val("city"),
-address: val("address"),
-summary: val("summary"),
-experience: list("experience"),
-education: list("education"),
-certs: list("certs"),
-skills: list("skills"),
-projects: list("projects")
+  name: val("name"),
+  title: val("title"),
+  phone: val("phone"),
+  email: val("email"),
+  city: val("city"),
+  address: val("address"),
+  summary: val("summary"),
+  experience: list("experience"),
+  education: list("education"),
+  certs: list("certs"),
+  skills: list("skills"),
+  projects: list("projects")
 };
 
 document.getElementById("cv-preview").innerHTML = `
@@ -25,6 +40,7 @@ document.getElementById("cv-preview").innerHTML = `
 <p>📞 ${data.phone}</p>
 <p>✉️ ${data.email}</p>
 <p>📍 ${data.city}</p>
+<p>🏠 ${data.address}</p>
 
 <h3>Skills</h3>
 ${data.skills}
@@ -53,31 +69,63 @@ ${data.projects}
 `;
 }
 
-function val(id){
-return document.getElementById(id).value;
-}
-
-function list(id){
-return document.getElementById(id).value
-.split("\n")
-.map(item => `<p>• ${item}</p>`)
-.join("");
-}
-
+// تحميل PDF (نسخة محسّنة 🔥)
 function downloadPDF(){
-const element = document.getElementById("cv-preview");
-html2pdf().from(element).save();
+
+  const original = document.getElementById("cv-preview");
+
+  // نسخ العنصر
+  const clone = original.cloneNode(true);
+
+  // تعديل التصميم عشان يطلع مضبوط
+  clone.style.background = "white";
+  clone.style.color = "black";
+  clone.style.padding = "20px";
+
+  // حل مشكلة grid
+  const cv = clone.querySelector(".cv");
+  if(cv){
+    cv.style.display = "block";
+  }
+
+  document.body.appendChild(clone);
+
+  const opt = {
+    margin: 0.3,
+    filename: 'My-CV.pdf',
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+  };
+
+  // تأخير بسيط لضمان التحميل
+  setTimeout(() => {
+    html2pdf().set(opt).from(clone).save().then(() => {
+      clone.remove();
+    });
+  }, 500);
 }
 
+// تحليل CV
 function analyzeCV(){
 
 let score = 0;
 
-if(val("summary").length > 80) score += 25;
-if(val("experience").length > 50) score += 25;
-if(val("skills").length > 20) score += 25;
-if(val("projects").length > 20) score += 25;
+if(val("summary").length > 80) score += 20;
+if(val("experience").length > 50) score += 20;
+if(val("skills").length > 20) score += 20;
+if(val("projects").length > 20) score += 20;
+if(val("education").length > 20) score += 20;
 
-document.getElementById("analysis").innerHTML =
-"🔥 قوة السيرة: " + score + "%";
+let result = "🔥 قوة السيرة: " + score + "%<br>";
+
+if(score < 60){
+  result += "⚠️ حاول تضيف تفاصيل أكثر";
+}else if(score < 80){
+  result += "👍 جيد لكن يحتاج تحسين";
+}else{
+  result += "🚀 سيرة قوية جداً!";
+}
+
+document.getElementById("analysis").innerHTML = result;
 }
