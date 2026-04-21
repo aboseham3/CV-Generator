@@ -1,5 +1,5 @@
 function val(id){
-  return document.getElementById(id).value;
+  return document.getElementById(id).value || "";
 }
 
 function list(id){
@@ -10,8 +10,15 @@ function list(id){
     .join("");
 }
 
-/* ===== GENERATE CV ===== */
+/* ===== GENERATE (FIXED 100%) ===== */
 function generateCV(){
+
+const name = val("name");
+
+if(!name){
+  alert("Please enter name");
+  return;
+}
 
 document.getElementById("cv-preview").innerHTML = `
 <div class="cv">
@@ -23,33 +30,24 @@ document.getElementById("cv-preview").innerHTML = `
   <p>📞 ${val("phone")}</p>
   <p>✉️ ${val("email")}</p>
   <p>📍 ${val("city")}</p>
-  <p>🏠 ${val("address")}</p>
-
-  <h3>Skills</h3>
-  <ul>${list("skills")}</ul>
 </div>
 
 <div class="right">
 
-  <div class="section">
-    <h2>Summary</h2>
-    <p>${val("summary")}</p>
-  </div>
+  <h2>Summary</h2>
+  <p>${val("summary")}</p>
 
-  <div class="section">
-    <h2>Experience</h2>
-    <ul>${list("experience")}</ul>
-  </div>
+  <h2>Experience</h2>
+  <ul>${list("experience")}</ul>
 
-  <div class="section">
-    <h2>Education</h2>
-    <ul>${list("education")}</ul>
-  </div>
+  <h2>Education</h2>
+  <ul>${list("education")}</ul>
 
-  <div class="section">
-    <h2>Projects</h2>
-    <ul>${list("projects")}</ul>
-  </div>
+  <h2>Skills</h2>
+  <ul>${list("skills")}</ul>
+
+  <h2>Projects</h2>
+  <ul>${list("projects")}</ul>
 
 </div>
 
@@ -57,62 +55,38 @@ document.getElementById("cv-preview").innerHTML = `
 `;
 }
 
-/* ===== PDF FIX PRO (نهائي) ===== */
+/* ===== PDF FIX (NO WHITE PAGE 🔥) ===== */
 function downloadPDF(){
 
-const source = document.getElementById("cv-preview");
+const element = document.getElementById("cv-preview");
 
-const clone = source.cloneNode(true);
+if(!element.innerHTML){
+  alert("Generate CV first");
+  return;
+}
+
+const clone = element.cloneNode(true);
 
 const wrapper = document.createElement("div");
 wrapper.style.position = "fixed";
 wrapper.style.left = "-9999px";
-wrapper.style.top = "0";
 wrapper.style.width = "800px";
-wrapper.style.background = "white";
-
 wrapper.appendChild(clone);
-document.body.appendChild(wrapper);
 
-clone.style.background = "white";
-clone.style.color = "black";
+document.body.appendChild(wrapper);
 
 const opt = {
   margin: 0,
-  filename: 'Professional-CV.pdf',
+  filename: 'CV.pdf',
   image: { type: 'jpeg', quality: 1 },
-  html2canvas: {
-    scale: 3,
-    useCORS: true,
-    scrollY: 0
-  },
-  jsPDF: {
-    unit: 'px',
-    format: [794, 1123],
-    orientation: 'portrait'
-  }
+  html2canvas: { scale: 3 },
+  jsPDF: { unit: 'px', format: [794,1123] }
 };
 
 setTimeout(() => {
-  html2pdf()
-    .set(opt)
-    .from(wrapper)
-    .save()
-    .then(() => wrapper.remove());
-}, 700);
+  html2pdf().from(wrapper).set(opt).save().then(() => {
+    wrapper.remove();
+  });
+}, 800);
 
-}
-
-/* ===== ANALYSIS ===== */
-function analyzeCV(){
-
-let score = 0;
-
-if(val("summary").length > 80) score += 25;
-if(val("experience").length > 50) score += 25;
-if(val("skills").length > 20) score += 25;
-if(val("projects").length > 20) score += 25;
-
-document.getElementById("analysis").innerHTML =
-"📊 CV Score: " + score + "%";
 }
