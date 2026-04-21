@@ -1,67 +1,57 @@
-// جلب القيمة
 function val(id){
   return document.getElementById(id).value;
 }
 
-// تحويل النص إلى نقاط
 function list(id){
-  return document.getElementById(id).value
+  return val(id)
     .split("\n")
-    .filter(item => item.trim() !== "")
-    .map(item => `<p>• ${item}</p>`)
+    .filter(x => x.trim() !== "")
+    .map(x => `<li>${x}</li>`)
     .join("");
 }
 
-// إنشاء CV
+/* ===== إنشاء CV ===== */
 function generateCV(){
-
-const data = {
-  name: val("name"),
-  title: val("title"),
-  phone: val("phone"),
-  email: val("email"),
-  city: val("city"),
-  address: val("address"),
-  summary: val("summary"),
-  experience: list("experience"),
-  education: list("education"),
-  certs: list("certs"),
-  skills: list("skills"),
-  projects: list("projects")
-};
 
 document.getElementById("cv-preview").innerHTML = `
 <div class="cv">
 
-<div class="sidebar">
-<h2>${data.name}</h2>
-<p>${data.title}</p>
+<div class="left">
+  <h1>${val("name")}</h1>
+  <p>${val("title")}</p>
 
-<p>📞 ${data.phone}</p>
-<p>✉️ ${data.email}</p>
-<p>📍 ${data.city}</p>
-<p>🏠 ${data.address}</p>
+  <p>📞 ${val("phone")}</p>
+  <p>✉️ ${val("email")}</p>
+  <p>📍 ${val("city")}</p>
+  <p>🏠 ${val("address")}</p>
 
-<h3>Skills</h3>
-${data.skills}
-
-<h3>Certificates</h3>
-${data.certs}
+  <div class="section">
+    <h3>Skills</h3>
+    <ul>${list("skills")}</ul>
+  </div>
 </div>
 
-<div class="main">
+<div class="right">
 
-<h2>Profile</h2>
-<p>${data.summary}</p>
+  <div class="section">
+    <h2>Summary</h2>
+    <p>${val("summary")}</p>
+  </div>
 
-<h2>Experience</h2>
-${data.experience}
+  <div class="section">
+    <h2>Experience</h2>
+    <ul>${list("experience")}</ul>
+  </div>
 
-<h2>Education</h2>
-${data.education}
+  <div class="section">
+    <h2>Education</h2>
+    <ul>${list("education")}</ul>
+  </div>
 
-<h2>Projects</h2>
-${data.projects}
+  <div class="section">
+    <h2>Projects</h2>
+    <ul>${list("projects")}</ul>
+  </div>
 
 </div>
 
@@ -69,63 +59,63 @@ ${data.projects}
 `;
 }
 
-// تحميل PDF (نسخة محسّنة 🔥)
+/* =====🔥 PDF FIX (CANVA STYLE FIX) ===== */
 function downloadPDF(){
 
-  const original = document.getElementById("cv-preview");
+const source = document.getElementById("cv-preview");
 
-  // نسخ العنصر
-  const clone = original.cloneNode(true);
+// clone نظيف للطباعة
+const clone = source.cloneNode(true);
 
-  // تعديل التصميم عشان يطلع مضبوط
-  clone.style.background = "white";
-  clone.style.color = "black";
-  clone.style.padding = "20px";
+const wrapper = document.createElement("div");
+wrapper.style.position = "fixed";
+wrapper.style.left = "-10000px";
+wrapper.style.top = "0";
+wrapper.style.width = "800px";
+wrapper.style.background = "white";
 
-  // حل مشكلة grid
-  const cv = clone.querySelector(".cv");
-  if(cv){
-    cv.style.display = "block";
+wrapper.appendChild(clone);
+document.body.appendChild(wrapper);
+
+// إصلاح layout قبل الطباعة
+clone.style.background = "white";
+clone.style.color = "black";
+
+const opt = {
+  margin: 0,
+  filename: 'CV-Pro.pdf',
+  image: { type: 'jpeg', quality: 1 },
+  html2canvas: {
+    scale: 3,
+    useCORS: true
+  },
+  jsPDF: {
+    unit: 'px',
+    format: [794, 1123], // A4
+    orientation: 'portrait'
   }
+};
 
-  document.body.appendChild(clone);
+setTimeout(() => {
+  html2pdf()
+    .set(opt)
+    .from(wrapper)
+    .save()
+    .then(() => wrapper.remove());
+}, 800);
 
-  const opt = {
-    margin: 0.3,
-    filename: 'My-CV.pdf',
-    image: { type: 'jpeg', quality: 1 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-  };
-
-  // تأخير بسيط لضمان التحميل
-  setTimeout(() => {
-    html2pdf().set(opt).from(clone).save().then(() => {
-      clone.remove();
-    });
-  }, 500);
 }
 
-// تحليل CV
+/* ===== تحليل CV ===== */
 function analyzeCV(){
 
 let score = 0;
 
-if(val("summary").length > 80) score += 20;
-if(val("experience").length > 50) score += 20;
-if(val("skills").length > 20) score += 20;
-if(val("projects").length > 20) score += 20;
-if(val("education").length > 20) score += 20;
+if(val("summary").length > 80) score += 25;
+if(val("experience").length > 50) score += 25;
+if(val("skills").length > 20) score += 25;
+if(val("projects").length > 20) score += 25;
 
-let result = "🔥 قوة السيرة: " + score + "%<br>";
-
-if(score < 60){
-  result += "⚠️ حاول تضيف تفاصيل أكثر";
-}else if(score < 80){
-  result += "👍 جيد لكن يحتاج تحسين";
-}else{
-  result += "🚀 سيرة قوية جداً!";
-}
-
-document.getElementById("analysis").innerHTML = result;
+document.getElementById("analysis").innerHTML =
+"📊 CV Score: " + score + "%";
 }
