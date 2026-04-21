@@ -1,28 +1,31 @@
-let lang="ar";
+let lang = "ar";
 
-/* ===== LANGUAGE ===== */
-function switchLang(){
-lang = lang==="ar" ? "en" : "ar";
+/* عناصر */
+const generateBtn = document.getElementById("generateBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const analyzeBtn = document.getElementById("analyzeBtn");
+const langBtn = document.getElementById("langBtn");
 
-document.getElementById("title").innerText =
-lang==="ar" ? "CV Builder Pro" : "CV Builder Pro";
-}
+/* ===== اللغة ===== */
+langBtn.onclick = () => {
+  lang = lang === "ar" ? "en" : "ar";
+};
 
-/* ===== HELPERS ===== */
+/* ===== مساعد ===== */
 function val(id){
-return document.getElementById(id).value || "";
+  return document.getElementById(id).value || "";
 }
 
 function list(id){
-return val(id)
-.split("\n")
-.filter(x=>x.trim()!=="")
-.map(x=>`<li>${x}</li>`)
-.join("");
+  return val(id)
+    .split("\n")
+    .filter(x => x.trim() !== "")
+    .map(x => `<li>${x}</li>`)
+    .join("");
 }
 
-/* ===== GENERATE ===== */
-function generateCV(){
+/* ===== إنشاء CV ===== */
+generateBtn.onclick = () => {
 
 document.getElementById("cv-preview").innerHTML = `
 <div class="cv">
@@ -57,29 +60,32 @@ document.getElementById("cv-preview").innerHTML = `
 
 </div>
 `;
-}
 
-/* ===== PDF (FIX FINAL) ===== */
-function downloadPDF(){
+};
+
+/* ===== تحميل PDF ===== */
+downloadBtn.onclick = () => {
 
 if(!document.getElementById("cv-preview").innerHTML){
-alert("اضغط إنشاء أولاً");
-return;
+  alert("اضغط إنشاء أولاً");
+  return;
 }
 
 window.print();
-}
 
-/* ===== ANALYSIS ===== */
-function analyzeCV(){
+};
 
-let score=0;
+/* ===== تحليل ===== */
+analyzeBtn.onclick = () => {
 
-if(val("summary").length>30) score+=25;
-if(val("experience").length>20) score+=25;
-if(val("skills").length>10) score+=25;
-if(val("projects").length>10) score+=25;
+let score = 0;
+
+if(val("summary").length > 30) score += 25;
+if(val("experience").length > 20) score += 25;
+if(val("skills").length > 10) score += 25;
+if(val("projects").length > 10) score += 25;
 
 document.getElementById("analysis").innerText =
-"CV Score: "+score+"%";
-}
+"CV Score: " + score + "%";
+
+};
