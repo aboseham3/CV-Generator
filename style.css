@@ -1,111 +1,89 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI';
-  background: #f4f6fb;
-  color: #111;
-}
-
-/* ===== TOP BAR ===== */
-.topbar {
-  text-align: center;
-  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  font-family: Arial;
+  background: #0b0b0f;
   color: white;
-  padding: 25px;
 }
 
-.topbar h1 {
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 25px;
+  background: linear-gradient(90deg, #e50914, #6d28d9);
+}
+
+.header h1 {
   margin: 0;
 }
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .container {
   display: flex;
   gap: 20px;
   padding: 20px;
 }
 
-/* ===== FORM ===== */
+/* FORM */
 .form {
   width: 40%;
-  background: white;
+  background: #141414;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px rgba(229,9,20,0.2);
 }
 
 input, textarea {
   width: 100%;
-  display: block;
   margin-bottom: 10px;
-  padding: 12px;
+  padding: 10px;
   border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 14px;
+  border: none;
+  background: #222;
+  color: white;
 }
 
-textarea {
-  resize: none;
-  height: 70px;
-}
-
-/* ===== BUTTONS ===== */
-.buttons {
-  display: flex;
-  gap: 10px;
-}
-
+/* BUTTONS */
 button {
-  flex: 1;
+  width: 100%;
   padding: 12px;
+  margin-top: 10px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background: #2563eb;
+  background: #e50914;
   color: white;
   font-weight: bold;
 }
 
 button:hover {
-  background: #1d4ed8;
+  background: #b20710;
 }
 
-/* ===== CV PREVIEW ===== */
+/* CV PREVIEW */
 #cv-preview {
   width: 60%;
-  background: white;
-  padding: 25px;
+  background: #141414;
+  padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* ===== CV DESIGN ===== */
+/* CV DESIGN */
 .cv {
   display: flex;
-  gap: 20px;
 }
 
 .left {
   width: 35%;
-  background: #0f172a;
-  color: white;
+  background: #e50914;
   padding: 20px;
   border-radius: 10px;
 }
 
 .right {
   width: 65%;
+  padding: 20px;
 }
 
 h2 {
-  border-left: 4px solid #2563eb;
-  padding-left: 10px;
-}
-
-.section {
-  margin-bottom: 15px;
-}
-
-/* تحسين الشكل */
-ul {
-  padding-left: 18px;
+  color: #e50914;
 }
