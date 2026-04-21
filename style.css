@@ -1,79 +1,111 @@
 body {
   margin: 0;
-  font-family: Arial;
-  background: #0b1220;
-  color: white;
+  font-family: 'Segoe UI';
+  background: #f4f6fb;
+  color: #111;
 }
 
-.app {
+/* ===== TOP BAR ===== */
+.topbar {
+  text-align: center;
+  background: linear-gradient(135deg,#2563eb,#1d4ed8);
+  color: white;
+  padding: 25px;
+}
+
+.topbar h1 {
+  margin: 0;
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  display: flex;
+  gap: 20px;
   padding: 20px;
 }
 
-h1 {
-  text-align: center;
-}
-
-.panel {
-  display: flex;
-  gap: 20px;
-}
-
-.inputs {
+/* ===== FORM ===== */
+.form {
   width: 40%;
-  background: #111a2e;
-  padding: 15px;
+  background: white;
+  padding: 20px;
   border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 input, textarea {
   width: 100%;
-  margin: 5px 0;
-  padding: 10px;
+  display: block;
+  margin-bottom: 10px;
+  padding: 12px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+  height: 70px;
+}
+
+/* ===== BUTTONS ===== */
+.buttons {
+  display: flex;
+  gap: 10px;
 }
 
 button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  background: #22c55e;
+  flex: 1;
+  padding: 12px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
 }
 
-/* ===== CV AREA (Canva Style) ===== */
+button:hover {
+  background: #1d4ed8;
+}
+
+/* ===== CV PREVIEW ===== */
 #cv-preview {
   width: 60%;
   background: white;
-  color: black;
-  border-radius: 10px;
-  padding: 20px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* CV Layout */
+/* ===== CV DESIGN ===== */
 .cv {
   display: flex;
+  gap: 20px;
 }
 
 .left {
   width: 35%;
-  background: #111827;
+  background: #0f172a;
   color: white;
-  padding: 15px;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .right {
   width: 65%;
-  padding: 15px;
+}
+
+h2 {
+  border-left: 4px solid #2563eb;
+  padding-left: 10px;
 }
 
 .section {
   margin-bottom: 15px;
 }
 
-h2 {
-  border-bottom: 2px solid #22c55e;
-  padding-bottom: 5px;
+/* تحسين الشكل */
+ul {
+  padding-left: 18px;
 }
