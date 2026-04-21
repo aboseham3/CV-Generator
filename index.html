@@ -9,8 +9,8 @@
 <body>
 
 <div class="topbar">
-  <h1 id="appTitle">CV Builder Pro</h1>
-  <button onclick="switchLang()" id="langBtn">EN / AR</button>
+  <h1 id="title">CV Builder Pro</h1>
+  <button onclick="switchLang()">🌐 عربي / English</button>
 </div>
 
 <div class="container">
@@ -19,11 +19,10 @@
 <div class="form">
 
 <input id="name" placeholder="الاسم / Name">
-<input id="title" placeholder="المسمى الوظيفي">
-<input id="phone" placeholder="الجوال">
-<input id="email" placeholder="الإيميل">
+<input id="job" placeholder="المسمى الوظيفي">
+<input id="phone" placeholder="رقم الجوال">
+<input id="email" placeholder="البريد الإلكتروني">
 <input id="city" placeholder="المدينة">
-<input id="address" placeholder="العنوان">
 
 <textarea id="summary" placeholder="النبذة"></textarea>
 <textarea id="experience" placeholder="الخبرات (كل سطر)"></textarea>
@@ -32,9 +31,9 @@
 <textarea id="projects" placeholder="المشاريع"></textarea>
 
 <div class="buttons">
-<button onclick="generateCV()">إنشاء</button>
-<button onclick="downloadPDF()">تحميل PDF</button>
-<button onclick="analyzeCV()">تحليل</button>
+<button onclick="generateCV()">🚀 إنشاء</button>
+<button onclick="downloadPDF()">📥 تحميل</button>
+<button onclick="analyzeCV()">📊 تحليل</button>
 </div>
 
 <div id="analysis"></div>
@@ -46,7 +45,6 @@
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="script.js"></script>
 
 </body>
