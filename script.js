@@ -10,7 +10,7 @@ function list(id){
     .join("");
 }
 
-/* ===== إنشاء CV ===== */
+/* ===== GENERATE CV ===== */
 function generateCV(){
 
 document.getElementById("cv-preview").innerHTML = `
@@ -25,10 +25,8 @@ document.getElementById("cv-preview").innerHTML = `
   <p>📍 ${val("city")}</p>
   <p>🏠 ${val("address")}</p>
 
-  <div class="section">
-    <h3>Skills</h3>
-    <ul>${list("skills")}</ul>
-  </div>
+  <h3>Skills</h3>
+  <ul>${list("skills")}</ul>
 </div>
 
 <div class="right">
@@ -59,17 +57,16 @@ document.getElementById("cv-preview").innerHTML = `
 `;
 }
 
-/* =====🔥 PDF FIX (CANVA STYLE FIX) ===== */
+/* ===== PDF FIX PRO (نهائي) ===== */
 function downloadPDF(){
 
 const source = document.getElementById("cv-preview");
 
-// clone نظيف للطباعة
 const clone = source.cloneNode(true);
 
 const wrapper = document.createElement("div");
 wrapper.style.position = "fixed";
-wrapper.style.left = "-10000px";
+wrapper.style.left = "-9999px";
 wrapper.style.top = "0";
 wrapper.style.width = "800px";
 wrapper.style.background = "white";
@@ -77,21 +74,21 @@ wrapper.style.background = "white";
 wrapper.appendChild(clone);
 document.body.appendChild(wrapper);
 
-// إصلاح layout قبل الطباعة
 clone.style.background = "white";
 clone.style.color = "black";
 
 const opt = {
   margin: 0,
-  filename: 'CV-Pro.pdf',
+  filename: 'Professional-CV.pdf',
   image: { type: 'jpeg', quality: 1 },
   html2canvas: {
     scale: 3,
-    useCORS: true
+    useCORS: true,
+    scrollY: 0
   },
   jsPDF: {
     unit: 'px',
-    format: [794, 1123], // A4
+    format: [794, 1123],
     orientation: 'portrait'
   }
 };
@@ -102,11 +99,11 @@ setTimeout(() => {
     .from(wrapper)
     .save()
     .then(() => wrapper.remove());
-}, 800);
+}, 700);
 
 }
 
-/* ===== تحليل CV ===== */
+/* ===== ANALYSIS ===== */
 function analyzeCV(){
 
 let score = 0;
