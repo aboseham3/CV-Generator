@@ -1,2 +1,2 @@
 # CV-Generator
-CV Generator
+by: Sami Alsayed 
