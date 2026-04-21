@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <title>CV Builder Pro</title>
@@ -8,9 +8,9 @@
 
 <body>
 
-<div class="header">
-  <h1>🔥 CV Builder Pro</h1>
-  <p>Create a Netflix-style professional CV</p>
+<div class="topbar">
+  <h1 id="titleText">CV Builder Pro</h1>
+  <button onclick="switchLang()">🌐 عربي / English</button>
 </div>
 
 <div class="container">
@@ -18,27 +18,32 @@
 <!-- FORM -->
 <div class="form">
 
-  <input id="name" placeholder="Full Name">
-  <input id="title" placeholder="Job Title">
+  <h3 id="formTitle">البيانات الشخصية</h3>
 
-  <input id="phone" placeholder="Phone">
-  <input id="email" placeholder="Email">
-  <input id="city" placeholder="City">
+  <input id="name" placeholder="الاسم الكامل">
+  <input id="title" placeholder="المسمى الوظيفي">
+  <input id="phone" placeholder="رقم الجوال">
+  <input id="email" placeholder="البريد الإلكتروني">
+  <input id="city" placeholder="المدينة">
+  <input id="address" placeholder="العنوان">
 
-  <textarea id="summary" placeholder="Summary"></textarea>
-  <textarea id="experience" placeholder="Experience (one per line)"></textarea>
-  <textarea id="education" placeholder="Education"></textarea>
-  <textarea id="skills" placeholder="Skills"></textarea>
-  <textarea id="projects" placeholder="Projects"></textarea>
+  <textarea id="summary" placeholder="النبذة"></textarea>
+  <textarea id="experience" placeholder="الخبرات (سطر لكل خبرة)"></textarea>
+  <textarea id="education" placeholder="التعليم"></textarea>
+  <textarea id="skills" placeholder="المهارات"></textarea>
+  <textarea id="projects" placeholder="المشاريع"></textarea>
 
   <div class="buttons">
-    <button onclick="generateCV()">Generate</button>
-    <button onclick="downloadPDF()">Download PDF</button>
+    <button onclick="generateCV()">🚀 إنشاء CV</button>
+    <button onclick="downloadPDF()">📥 تحميل PDF</button>
+    <button onclick="analyzeCV()">📊 تحليل</button>
   </div>
+
+  <div id="analysis"></div>
 
 </div>
 
-<!-- PREVIEW -->
+<!-- CV -->
 <div id="cv-preview"></div>
 
 </div>
