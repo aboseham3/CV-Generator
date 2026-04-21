@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>CV Generator Pro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔥 CV Generator Pro</h1>
+
+<select id="lang">
+  <option value="ar">العربية</option>
+  <option value="en">English</option>
+</select>
+
+<select id="template">
+  <option value="modern">Modern</option>
+  <option value="classic">Classic</option>
+  <option value="minimal">Minimal</option>
+</select>
+
+<input id="name" placeholder="الاسم / Name">
+<input id="title" placeholder="المسمى / Job Title">
+
+<textarea id="summary" placeholder="نبذة / Summary"></textarea>
+<button onclick="improveText()">✨ تحسين النص</button>
+
+<textarea id="experience" placeholder="الخبرات / Experience"></textarea>
+<textarea id="skills" placeholder="المهارات / Skills"></textarea>
+
+<button onclick="generateCV()">🚀 إنشاء CV</button>
+<button onclick="downloadPDF()">📥 تحميل PDF</button>
+<button onclick="analyzeCV()">📊 تحليل CV</button>
+
+<div id="analysis"></div>
+
+</div>
+
+<div id="cv-preview"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="templates.js"></script>
+<script src="ai-helper.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
