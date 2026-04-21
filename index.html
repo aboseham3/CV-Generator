@@ -2,45 +2,47 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>CV Builder Pro</title>
+<title>Pro CV Builder</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="app">
+<div class="topbar">
+  <h1>CV Builder Pro</h1>
+  <p>Build a professional CV in seconds</p>
+</div>
 
-<h1>🔥 CV Builder Pro</h1>
+<div class="container">
 
-<div class="panel">
+<!-- ===== FORM ===== -->
+<div class="form">
 
-<div class="inputs">
+  <input id="name" placeholder="Full Name">
+  <input id="title" placeholder="Job Title">
+  <input id="phone" placeholder="Phone Number">
+  <input id="email" placeholder="Email">
+  <input id="city" placeholder="City">
+  <input id="address" placeholder="Address">
 
-<input id="name" placeholder="الاسم الكامل">
-<input id="title" placeholder="المسمى الوظيفي">
+  <textarea id="summary" placeholder="Professional Summary"></textarea>
+  <textarea id="experience" placeholder="Experience (one per line)"></textarea>
+  <textarea id="education" placeholder="Education"></textarea>
+  <textarea id="skills" placeholder="Skills"></textarea>
+  <textarea id="projects" placeholder="Projects"></textarea>
 
-<input id="phone" placeholder="رقم الجوال">
-<input id="email" placeholder="البريد الإلكتروني">
-<input id="city" placeholder="المدينة">
-<input id="address" placeholder="العنوان">
+  <div class="buttons">
+    <button onclick="generateCV()">Generate CV</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+    <button onclick="analyzeCV()">Analyze</button>
+  </div>
 
-<textarea id="summary" placeholder="النبذة"></textarea>
-<textarea id="experience" placeholder="الخبرات (كل سطر خبرة)"></textarea>
-<textarea id="education" placeholder="التعليم"></textarea>
-<textarea id="skills" placeholder="المهارات"></textarea>
-<textarea id="projects" placeholder="المشاريع"></textarea>
-
-<button onclick="generateCV()">🚀 إنشاء</button>
-<button onclick="downloadPDF()">📥 تحميل PDF</button>
-<button onclick="analyzeCV()">📊 تحليل</button>
-
-<div id="analysis"></div>
+  <div id="analysis"></div>
 
 </div>
 
+<!-- ===== CV PREVIEW ===== -->
 <div id="cv-preview"></div>
-
-</div>
 
 </div>
 
