@@ -1,19 +1,24 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #0b0b0f;
+  background: #0f1115;
   color: white;
 }
 
-/* HEADER */
-.header {
-  text-align: center;
-  padding: 25px;
-  background: linear-gradient(90deg, #e50914, #6d28d9);
+/* TOP BAR */
+.topbar {
+  background: linear-gradient(90deg,#7c3aed,#2563eb);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header h1 {
-  margin: 0;
+.topbar button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 /* LAYOUT */
@@ -26,10 +31,9 @@ body {
 /* FORM */
 .form {
   width: 40%;
-  background: #141414;
+  background: #161a22;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(229,9,20,0.2);
 }
 
 input, textarea {
@@ -38,52 +42,59 @@ input, textarea {
   padding: 10px;
   border-radius: 8px;
   border: none;
-  background: #222;
+  background: #222733;
   color: white;
 }
 
 /* BUTTONS */
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
 button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
+  flex: 1;
+  padding: 10px;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
-  background: #e50914;
+  background: #2563eb;
   color: white;
-  font-weight: bold;
+  cursor: pointer;
 }
 
-button:hover {
-  background: #b20710;
-}
-
-/* CV PREVIEW */
+/* CV */
 #cv-preview {
   width: 60%;
-  background: #141414;
+  background: white;
+  color: black;
   padding: 20px;
   border-radius: 12px;
 }
 
-/* CV DESIGN */
+/* CV LAYOUT */
 .cv {
   display: flex;
 }
 
 .left {
   width: 35%;
-  background: #e50914;
-  padding: 20px;
-  border-radius: 10px;
+  background: #111827;
+  color: white;
+  padding: 15px;
 }
 
 .right {
   width: 65%;
-  padding: 20px;
+  padding: 15px;
 }
 
 h2 {
-  color: #e50914;
+  border-left: 4px solid #2563eb;
+  padding-left: 10px;
+}
+
+/* Analysis */
+#analysis {
+  margin-top: 10px;
+  color: #22c55e;
 }
