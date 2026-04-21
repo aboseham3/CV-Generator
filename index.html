@@ -10,12 +10,11 @@
 
 <div class="topbar">
   <h1 id="title">CV Builder Pro</h1>
-  <button onclick="switchLang()">🌐 عربي / English</button>
+  <button id="langBtn">🌐 عربي / English</button>
 </div>
 
 <div class="container">
 
-<!-- FORM -->
 <div class="form">
 
 <input id="name" placeholder="الاسم / Name">
@@ -31,16 +30,15 @@
 <textarea id="projects" placeholder="المشاريع"></textarea>
 
 <div class="buttons">
-<button onclick="generateCV()">🚀 إنشاء</button>
-<button onclick="downloadPDF()">📥 تحميل</button>
-<button onclick="analyzeCV()">📊 تحليل</button>
+<button id="generateBtn">🚀 إنشاء</button>
+<button id="downloadBtn">📥 تحميل</button>
+<button id="analyzeBtn">📊 تحليل</button>
 </div>
 
 <div id="analysis"></div>
 
 </div>
 
-<!-- CV -->
 <div id="cv-preview"></div>
 
 </div>
