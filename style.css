@@ -5,7 +5,6 @@ background:#0f172a;
 color:white;
 }
 
-/* HEADER */
 .topbar{
 background:linear-gradient(90deg,#7c3aed,#2563eb);
 padding:15px;
@@ -13,14 +12,12 @@ display:flex;
 justify-content:space-between;
 }
 
-/* LAYOUT */
 .container{
 display:flex;
 gap:20px;
 padding:20px;
 }
 
-/* FORM */
 .form{
 width:40%;
 background:#111827;
@@ -38,7 +35,6 @@ background:#1f2937;
 color:white;
 }
 
-/* BUTTONS */
 .buttons{
 display:flex;
 gap:10px;
@@ -54,7 +50,6 @@ color:white;
 cursor:pointer;
 }
 
-/* CV */
 #cv-preview{
 width:60%;
 background:white;
@@ -63,7 +58,6 @@ padding:20px;
 border-radius:10px;
 }
 
-/* CV DESIGN */
 .cv{
 display:flex;
 }
@@ -90,22 +84,14 @@ margin-top:10px;
 color:#22c55e;
 }
 
-/* ===== PRINT FIX ===== */
+/* PRINT */
 @media print {
-
-body * {
-visibility:hidden;
-}
-
-#cv-preview, #cv-preview * {
-visibility:visible;
-}
-
-#cv-preview{
+body * { visibility:hidden; }
+#cv-preview, #cv-preview * { visibility:visible; }
+#cv-preview {
 position:absolute;
 left:0;
 top:0;
 width:100%;
 }
-
 }
